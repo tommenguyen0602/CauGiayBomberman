@@ -7,6 +7,8 @@ import com.caugiay.bomberman.BombGame;
 public class DesktopLauncher {
 	public static void main (String[] arg) {
 		Lwjgl3ApplicationConfiguration config = new Lwjgl3ApplicationConfiguration();
+		config.setTitle("Bom");
+
 		new Lwjgl3Application(new BombGame(), config);
 	}
 }
