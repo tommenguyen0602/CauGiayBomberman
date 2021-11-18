@@ -8,21 +8,36 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthoCachedTiledMapRenderer;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
+import com.badlogic.gdx.utils.viewport.ExtendViewport;
+import com.badlogic.gdx.utils.viewport.StretchViewport;
 
 public class Play implements Screen {
+    public static final int WIDTH = 1280;
+    public static final int HEIGHT = 720;
 
+
+    public OrthographicCamera camera;
+    public ExtendViewport viewport;
     private TiledMap map;
     private OrthogonalTiledMapRenderer renderer;
-    private OrthographicCamera camera;
-
-
-
     @Override
     public void show() {
+
+        //load the map
         TmxMapLoader loader = new TmxMapLoader();
         map = loader.load("maps/firstmap.tmx");
         renderer = new OrthogonalTiledMapRenderer(map);
+
         camera = new OrthographicCamera();
+        camera.position.set(WIDTH/2,HEIGHT/2,0);
+        viewport = new ExtendViewport(WIDTH,HEIGHT,camera);
+        viewport.apply();
+
+
+
+
+
+
     }
 
 
@@ -30,9 +45,9 @@ public class Play implements Screen {
     public void render(float delta) {
         Gdx.gl.glClearColor(0,0,0,1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+
         renderer.setView(camera);
         renderer.render();
-
     }
 
 
@@ -41,6 +56,7 @@ public class Play implements Screen {
         camera.viewportHeight = height;
         camera.viewportWidth = width;
         camera.update();
+        viewport.update(WIDTH,HEIGHT);
     }
 
 
@@ -67,5 +83,6 @@ public class Play implements Screen {
     public void dispose() {
         map.dispose();
         renderer.dispose();
+
     }
 }

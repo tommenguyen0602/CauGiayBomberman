@@ -1,14 +1,14 @@
 package com.caugiay.bomberman.desktop;
 
-import com.badlogic.gdx.backends.lwjgl3.Lwjgl3Application;
-import com.badlogic.gdx.backends.lwjgl3.Lwjgl3ApplicationConfiguration;
+import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
+import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
 import com.caugiay.bomberman.BombGame;
 
 public class DesktopLauncher {
 	public static void main (String[] arg) {
-		Lwjgl3ApplicationConfiguration config = new Lwjgl3ApplicationConfiguration();
-		config.setTitle("Bom");
-
-		new Lwjgl3Application(new BombGame(), config);
+		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
+		config.height = 720;
+		config.width = 1280;
+		new LwjglApplication(new BombGame(), config);
 	}
 }
