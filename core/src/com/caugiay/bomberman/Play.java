@@ -24,8 +24,13 @@ public class Play implements Screen {
     public void render(float delta) {
         Gdx.gl.glClearColor(0,0,0,1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+
+        camera.position.set(player.getX() + player.getWidth() / 2, player.getY() + player.getHeight() / 2, 0);
+        camera.update();
+
         renderer.setView(camera);
         renderer.render();
+
         renderer.getBatch().begin();
         player.draw(renderer.getBatch());
         renderer.getBatch().end();
@@ -40,14 +45,16 @@ public class Play implements Screen {
         //camera.zoom = 1 / 1f;
 
         player = new Player(new Sprite(new Texture("Player sprites/boy_down_1.png")), (TiledMapTileLayer) map.getLayers().get(2));
-        //player.setPosition(11 * player.getCollisionLayer().getTileWidth(), 38 * player.getCollisionLayer().getTileHeight());
+        player.setX(40);
+        player.setY(250);
+        Gdx.input.setInputProcessor(player);
     }
 
     @Override
     public void resize(int width, int height) {
         camera.viewportHeight = height;
         camera.viewportWidth = width;
-        camera.update();
+        //camera.update();
     }
 
 
