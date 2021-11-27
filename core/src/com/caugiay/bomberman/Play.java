@@ -27,6 +27,7 @@ public class Play implements Screen {
         Gdx.gl.glClearColor(0,0,0,1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
+        //center the player with the camera
         camera.position.set(runner.getX() + runner.getWidth() / 2, runner.getY() + runner.getHeight() / 2, 0);
         camera.update();
 
@@ -45,7 +46,7 @@ public class Play implements Screen {
         map = loader.load("maps/secondmap.tmx");
         renderer = new OrthogonalTiledMapRenderer(map);
         camera = new OrthographicCamera();
-        //camera.zoom = 1 / 1f;
+        //camera.zoom = 1 / 2f;
 
         runner = new Runner(new Sprite(new Texture("Player sprites/boy_down_1.png")), (TiledMapTileLayer) map.getLayers().get(2));
         runner.setX(40);

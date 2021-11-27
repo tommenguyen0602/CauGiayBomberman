@@ -24,7 +24,12 @@ public class Runner extends Player{
     }
 
     public void update(float delta) {
-        float oldX = getX(), oldY = getY();
+
+        //current runner position
+        float oldX = getX();
+        float oldY = getY();
+
+
         boolean collisionX = false, collisionY = false;
 
         setX(getX() + velocity.x * delta);

@@ -19,6 +19,8 @@ public class Player extends Sprite implements InputProcessor {
     public Player(Sprite sprite, TiledMapTileLayer collisionLayer) {
         super(sprite);
         this.collisionLayer = collisionLayer;
+
+        //* 1.5f to scale player
         setSize(getWidth() * 1.5f , getHeight() * 1.5f);
     }
 
@@ -35,11 +37,27 @@ public class Player extends Sprite implements InputProcessor {
     public void update(float delta) {
     }
 
+
+    /***
+     *
+     * @param x current player x
+     * @param y current player y
+     * @return Status if a tile has "blocked" property
+     */
     private boolean isCellBlocked(float x, float y) {
         TiledMapTileLayer.Cell cell = collisionLayer.getCell((int) (x / collisionLayer.getTileWidth()), (int) (y / collisionLayer.getTileHeight()));
+        /**
+        monitor to terminal
+        System.out.println(x + " " + y);
+        System.out.println(collisionLayer.getTileWidth() + " " + collisionLayer.getTileHeight());
+         */
         return cell!=null && cell.getTile() != null && cell.getTile().getProperties().containsKey("blocked");
     }
 
+    /***
+     * Bố giải thích hộ con cái gì đây chạy how
+     * @return
+     */
     public boolean collidesRight() {
         for(float step = 0; step < getHeight(); step += collisionLayer.getTileHeight() / 2)
             if(isCellBlocked(getX() + getWidth(), getY() + step))
@@ -108,6 +126,8 @@ public class Player extends Sprite implements InputProcessor {
         return false;
     }
 
+
+    //constructors
     public float getSpeed() {
         return speed;
     }
