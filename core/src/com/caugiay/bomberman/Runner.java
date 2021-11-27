@@ -8,11 +8,15 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.math.Vector2;
 
+import java.util.List;
+import java.util.Random;
+
 public class Runner extends Player{
     private final Vector2 velocity = new Vector2();
     private final float speed = 120;
     private TiledMapTileLayer collisionLayer;
     private Animation left, right, up, down;
+    private List<Bomb> bombs;
 
     public Runner(Sprite sprite, TiledMapTileLayer collisionLayer) {
         super(sprite, collisionLayer);
@@ -28,6 +32,7 @@ public class Runner extends Player{
         //current runner position
         float oldX = getX();
         float oldY = getY();
+
 
 
         boolean collisionX = false, collisionY = false;
@@ -107,6 +112,18 @@ public class Runner extends Player{
             case Input.Keys.D:
                 velocity.x = speed;
                 break;
+        }
+        return false;
+    }
+
+    @Override
+    public boolean keyTyped(char character){
+        Random random = new Random();
+        int xC = random.nextInt(60);
+        int yC = random.nextInt(60);
+        System.out.println(xC + " " + yC);
+        if (character == Input.Keys.E) {
+            //
         }
         return false;
     }

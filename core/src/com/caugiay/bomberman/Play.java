@@ -13,6 +13,8 @@ import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthoCachedTiledMapRenderer;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 
+import java.util.List;
+
 public class Play implements Screen {
 
     private TiledMap map;
@@ -21,6 +23,10 @@ public class Play implements Screen {
     private Player player;
     private Runner runner;
     private Enemy enemy;
+    private List<Bomb> bombs;
+
+    public Play() {
+    }
 
     @Override
     public void render(float delta) {

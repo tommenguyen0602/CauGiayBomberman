@@ -26,6 +26,7 @@ public class Player extends Sprite implements InputProcessor {
 
     public Player() {
 
+
     }
 
     @Override
@@ -35,6 +36,7 @@ public class Player extends Sprite implements InputProcessor {
     }
 
     public void update(float delta) {
+
     }
 
 
