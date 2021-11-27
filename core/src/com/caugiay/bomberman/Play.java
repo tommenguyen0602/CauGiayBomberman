@@ -19,20 +19,23 @@ public class Play implements Screen {
     private OrthogonalTiledMapRenderer renderer;
     private OrthographicCamera camera;
     private Player player;
+    private Runner runner;
+    private Enemy enemy;
 
     @Override
     public void render(float delta) {
         Gdx.gl.glClearColor(0,0,0,1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-        camera.position.set(player.getX() + player.getWidth() / 2, player.getY() + player.getHeight() / 2, 0);
+        camera.position.set(runner.getX() + runner.getWidth() / 2, runner.getY() + runner.getHeight() / 2, 0);
         camera.update();
 
         renderer.setView(camera);
         renderer.render();
 
         renderer.getBatch().begin();
-        player.draw(renderer.getBatch());
+        runner.draw(renderer.getBatch());
+        enemy.draw(renderer.getBatch(), runner);
         renderer.getBatch().end();
     }
 
@@ -44,10 +47,14 @@ public class Play implements Screen {
         camera = new OrthographicCamera();
         //camera.zoom = 1 / 1f;
 
-        player = new Player(new Sprite(new Texture("Player sprites/boy_down_1.png")), (TiledMapTileLayer) map.getLayers().get(2));
-        player.setX(40);
-        player.setY(250);
-        Gdx.input.setInputProcessor(player);
+        runner = new Runner(new Sprite(new Texture("Player sprites/boy_down_1.png")), (TiledMapTileLayer) map.getLayers().get(2));
+        runner.setX(40);
+        runner.setY(400);
+        Gdx.input.setInputProcessor(runner);
+
+        enemy = new Enemy(new Sprite(new Texture("Player sprites/boy_down_1.png")), (TiledMapTileLayer) map.getLayers().get(2));
+        enemy.setX(40);
+        enemy.setY(500);
     }
 
     @Override
