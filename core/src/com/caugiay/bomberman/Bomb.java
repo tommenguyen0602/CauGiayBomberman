@@ -17,6 +17,7 @@ public class Bomb extends Sprite {
         super.draw(batch);
     }
     public void update(float delta) {
+
     }
 
 

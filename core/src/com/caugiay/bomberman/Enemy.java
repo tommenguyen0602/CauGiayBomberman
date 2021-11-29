@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.math.Vector2;
+import java.util.Random;
 
 public class Enemy extends Player{
     private final Vector2 velocity = new Vector2();
@@ -25,36 +26,13 @@ public class Enemy extends Player{
     public void update(float delta, Runner runner) {
         float oldX = getX(), oldY = getY();
         boolean collisionX = false, collisionY = false;
-        setX(getX() + velocity.x * delta);
-        if(velocity.x < 0) {
-            collisionX = collidesLeft();
-        }
-        else if (velocity.x > 0) {
-            collisionX = collidesRight();
-        }
-        if(collisionX) {
-            setX(oldX);
-            velocity.x = 0;
-        }
+        Random random = new Random();
+        int xC = random.nextInt(60);
+        int yC = random.nextInt(60);
+        setX(getX() + xC * delta);
+        setY(getY() + yC * delta);
 
-        setY(getY() + velocity.y * delta);
-        if(velocity.y < 0) {
-            collisionY = collidesBottom();
-        }
-        else if (velocity.y > 0) {
-            collisionY = collidesTop();
-        }
-        if(collisionY) {
-            setY(oldY);
-            velocity.y = 0;
-        }
 
-        if(!collisionX) {
-            movingX(runner);
-        }
-        if(!collisionY) {
-            movingY(runner);
-        }
     }
 
     public boolean collidesRight() {
@@ -73,20 +51,5 @@ public class Enemy extends Player{
         return super.collidesBottom();
     }
 
-    public void movingX(Runner runner) {
-        if (this.getX() > runner.getX() + 1) {
-            velocity.x = -speed/5;
-        }
-        if (this.getX() < runner.getX() - 1) {
-            velocity.x = speed/5;
-        }
-    }
-    public void movingY(Runner runner) {
-        if (this.getY() > runner.getY() + 1) {
-            velocity.y = -speed/5;
-        }
-        if (this.getY() < runner.getY() - 1) {
-            velocity.y = speed/5;
-        }
-    }
+
 }

@@ -112,6 +112,8 @@ public class Runner extends Player{
             case Input.Keys.D:
                 velocity.x = speed;
                 break;
+            case Input.Keys.B:
+                //plant a bomb
         }
         return false;
     }
@@ -121,10 +123,6 @@ public class Runner extends Player{
         Random random = new Random();
         int xC = random.nextInt(60);
         int yC = random.nextInt(60);
-        System.out.println(xC + " " + yC);
-        if (character == Input.Keys.E) {
-            //
-        }
         return false;
     }
 
